@@ -61,33 +61,26 @@ class MealItem extends StatelessWidget {
   }
 }
 
-class _MealItemDetails extends StatelessWidget {
-  const _MealItemDetails({
+class _MealItemImage extends StatelessWidget {
+  const _MealItemImage({
     Key key,
     @required this.meal,
-    @required this.complexityText,
-    @required this.affordabilityText,
   }) : super(key: key);
 
   final Meal meal;
-  final String complexityText;
-  final String affordabilityText;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _MealItemInfo(
-              icon: Icons.schedule,
-              text: "${meal.duration} min",
-            ),
-            _MealItemInfo(icon: Icons.work, text: complexityText),
-            _MealItemInfo(icon: Icons.attach_money, text: affordabilityText)
-          ],
-        ));
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+      child: Image.network(
+        meal.imageUrl,
+        height: 250,
+        width: double.infinity,
+        fit: BoxFit.cover,
+      ),
+    );
   }
 }
 
@@ -121,26 +114,33 @@ class _MealItemTitle extends StatelessWidget {
   }
 }
 
-class _MealItemImage extends StatelessWidget {
-  const _MealItemImage({
+class _MealItemDetails extends StatelessWidget {
+  const _MealItemDetails({
     Key key,
     @required this.meal,
+    @required this.complexityText,
+    @required this.affordabilityText,
   }) : super(key: key);
 
   final Meal meal;
+  final String complexityText;
+  final String affordabilityText;
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-      child: Image.network(
-        meal.imageUrl,
-        height: 250,
-        width: double.infinity,
-        fit: BoxFit.cover,
-      ),
-    );
+    return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _MealItemInfo(
+              icon: Icons.schedule,
+              text: "${meal.duration} min",
+            ),
+            _MealItemInfo(icon: Icons.work, text: complexityText),
+            _MealItemInfo(icon: Icons.attach_money, text: affordabilityText)
+          ],
+        ));
   }
 }
 
