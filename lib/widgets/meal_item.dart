@@ -47,23 +47,7 @@ class MealItem extends StatelessWidget {
             Stack(
               children: [
                 _MealItemImage(meal: meal),
-                Positioned(
-                  bottom: 20,
-                  right: 10,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        color: Colors.black54),
-                    width: 320,
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                    child: Text(
-                      meal.title,
-                      style: TextStyle(fontSize: 26, color: Colors.white),
-                      softWrap: true,
-                      overflow: TextOverflow.fade,
-                    ),
-                  ),
-                ),
+                _MealItemTitle(meal: meal),
               ],
             ),
             Padding(
@@ -81,6 +65,36 @@ class MealItem extends StatelessWidget {
                   ],
                 ))
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MealItemTitle extends StatelessWidget {
+  const _MealItemTitle({
+    Key key,
+    @required this.meal,
+  }) : super(key: key);
+
+  final Meal meal;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 20,
+      right: 10,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            color: Colors.black54),
+        width: 320,
+        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+        child: Text(
+          meal.title,
+          style: TextStyle(fontSize: 26, color: Colors.white),
+          softWrap: true,
+          overflow: TextOverflow.fade,
         ),
       ),
     );
