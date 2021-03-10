@@ -46,17 +46,7 @@ class MealItem extends StatelessWidget {
           children: [
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
-                  child: Image.network(
-                    meal.imageUrl,
-                    height: 250,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                _MealItemImage(meal: meal),
                 Positioned(
                   bottom: 20,
                   right: 10,
@@ -92,6 +82,30 @@ class MealItem extends StatelessWidget {
                 ))
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _MealItemImage extends StatelessWidget {
+  const _MealItemImage({
+    Key key,
+    @required this.meal,
+  }) : super(key: key);
+
+  final Meal meal;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15)),
+      child: Image.network(
+        meal.imageUrl,
+        height: 250,
+        width: double.infinity,
+        fit: BoxFit.cover,
       ),
     );
   }
