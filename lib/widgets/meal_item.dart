@@ -12,28 +12,6 @@ class MealItem extends StatelessWidget {
         arguments: {"currentMeal": meal}).then((value) {});
   }
 
-  String get complexityText {
-    switch (meal.complexity) {
-      case Complexity.Simple:
-        return "Simple";
-      case Complexity.Challenging:
-        return "Challenging";
-      case Complexity.Hard:
-        return "Hard";
-    }
-  }
-
-  String get affordabilityText {
-    switch (meal.affordability) {
-      case Affordability.Affordable:
-        return "Affordable";
-      case Affordability.Pricey:
-        return "Pricey";
-      case Affordability.Luxurious:
-        return "Luxurious";
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -51,9 +29,8 @@ class MealItem extends StatelessWidget {
               ],
             ),
             _MealItemDetails(
-                meal: meal,
-                complexityText: complexityText,
-                affordabilityText: affordabilityText)
+              meal: meal,
+            )
           ],
         ),
       ),
@@ -118,13 +95,31 @@ class _MealItemDetails extends StatelessWidget {
   const _MealItemDetails({
     Key key,
     @required this.meal,
-    @required this.complexityText,
-    @required this.affordabilityText,
   }) : super(key: key);
 
   final Meal meal;
-  final String complexityText;
-  final String affordabilityText;
+
+  String get complexityText {
+    switch (meal.complexity) {
+      case Complexity.Simple:
+        return "Simple";
+      case Complexity.Challenging:
+        return "Challenging";
+      case Complexity.Hard:
+        return "Hard";
+    }
+  }
+
+  String get affordabilityText {
+    switch (meal.affordability) {
+      case Affordability.Affordable:
+        return "Affordable";
+      case Affordability.Pricey:
+        return "Pricey";
+      case Affordability.Luxurious:
+        return "Luxurious";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
